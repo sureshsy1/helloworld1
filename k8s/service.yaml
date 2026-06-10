@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: helloworld1
+  namespace: suresh-apps
+  labels:
+    app: helloworld1
+spec:
+  selector:
+    app: helloworld1
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: ClusterIP

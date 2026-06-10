@@ -1,0 +1,28 @@
+apiVersion: gateway.kyma-project.io/v2
+kind: APIRule
+metadata:
+  name: helloworld1
+  namespace: suresh-apps
+spec:
+  # 🟢 Open-source Kyma (local/Kind): use local.kyma.dev
+  # 🔵 SAP BTP Kyma: replace with <cluster-id>.kyma.ondemand.com
+  hosts:
+    - helloworld1.local.kyma.dev
+  service:
+    name: helloworld1
+    port: 80
+  gateway: kyma-system/kyma-gateway
+  rules:
+    - path: /*
+      methods:
+        - GET
+        - POST
+        - PUT
+        - DELETE
+      # noAuth: true allows open access for local dev.
+      # For production, replace with:
+      #   jwt:
+      #     authentications:
+      #       - issuer: https://<your-idp>
+      #         jwksUri: https://<your-idp>/.well-known/jwks.json
+      noAuth: true

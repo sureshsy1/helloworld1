@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: helloworld1
+  namespace: suresh-apps
+  labels:
+    app: helloworld1
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: helloworld1
+  template:
+    metadata:
+      labels:
+        app: helloworld1
+    spec:
+      containers:
+        - name: helloworld1
+          image: ghcr.io/sureshsy1/helloworld1:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: "default"
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
+          readinessProbe:
+            httpGet:
+              path: /actuator/health/readiness
+              port: 8080
+            initialDelaySeconds: 15
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /actuator/health/liveness
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 20
