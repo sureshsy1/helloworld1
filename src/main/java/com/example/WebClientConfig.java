@@ -11,7 +11,7 @@ public class WebClientConfig {
     @Value("${helloworld2-service.url}")
     private String helloworld2ServiceUrl;
 
-    @Bean
+    @Bean(name = "helloworld2ServiceWebClient")
     public WebClient helloworld2ServiceWebClient() {
         return WebClient.builder()
                 .baseUrl(helloworld2ServiceUrl) // Will resolve to http://helloworld2-service:8080
