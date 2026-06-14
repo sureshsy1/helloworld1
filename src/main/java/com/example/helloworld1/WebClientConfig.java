@@ -1,4 +1,4 @@
-package com.example;
+package com.example.helloworld1
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
