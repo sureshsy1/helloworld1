@@ -10,11 +10,11 @@ public class HelloController {
 
     @Autowired  
     private WebClient helloworld2ServiceWebClient;
-    
+
     @GetMapping("/")
     public String hello() {
         String response = helloworld2ServiceWebClient.get()
-            .uri("/hello")
+            .uri("/")
             .retrieve()
             .bodyToMono(String.class)
             .block(); // Waits synchronously until the response arrives
