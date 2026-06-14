@@ -1,13 +1,16 @@
 package com.example.helloworld1;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.reactive.function.client.WebClient;
 
 @RestController
 public class HelloController {
 
-    @Autowired
-    private helloworld2ServiceWebClient helloworld2ServiceWebClient;
+    @Autowired  
+    private WebClient helloworld2ServiceWebClient;
+    
     @GetMapping("/")
     public String hello() {
         String response = helloworld2ServiceWebClient.get()
