@@ -1,6 +1,7 @@
 package com.example.helloworld1;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -8,12 +9,13 @@ import org.springframework.web.reactive.function.client.WebClient;
 @RestController
 public class HelloController {
 
-    @Autowired  
-    private WebClient helloworld2ServiceWebClient;
+@Autowired
+    @Qualifier("helloworld2ServiceWebClient")
+    private WebClient webClient;
 
     @GetMapping("/")
     public String hello() {
-        String response = helloworld2ServiceWebClient.get()
+        String response = webClient.get()
             .uri("/")
             .retrieve()
             .bodyToMono(String.class)
