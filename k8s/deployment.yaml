@@ -15,6 +15,7 @@ spec:
       labels:
         app: helloworld1
     spec:
+      serviceAccountName: helloworld1-sa # 👈 This links the new identity to this pod
       containers:
         - name: helloworld1
           image: ghcr.io/sureshsy1/helloworld1:latest
